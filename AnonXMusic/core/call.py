@@ -303,7 +303,7 @@ class Call(PyTgCalls):
                 MediaStream(
                     link,
                     AudioQuality.STUDIO,
-                    VideoQuality.SD_360p,,
+                    VideoQuality.SD_360p,
                 )
                 if video
                 else MediaStream(link, AudioQuality.STUDIO)
@@ -459,7 +459,7 @@ class Call(PyTgCalls):
                     MediaStream(
                         videoid,
                         AudioQuality.STUDIO,
-                        VideoQuality.SD_360p,,
+                        VideoQuality.SD_360p,
                     )
                     if str(streamtype) == "video"
                     else MediaStream(videoid, AudioQuality.STUDIO)
@@ -485,7 +485,7 @@ class Call(PyTgCalls):
                     stream = MediaStream(
                         queued,
                         AudioQuality.STUDIO,
-                        VideoQuality.SD_360p,,
+                        VideoQuality.SD_360p,
                     )
                 else:
                     stream = MediaStream(
