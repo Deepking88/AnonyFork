@@ -5,7 +5,7 @@ from typing import Union
 
 from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup
-from pytgcalls import PyTgCalls, StreamType
+from pytgcalls import PyTgCalls
 from pytgcalls.exceptions import (
     AlreadyJoinedError,
     NoActiveGroupCall
@@ -200,6 +200,7 @@ class Call(PyTgCalls):
             else MediaStream(
                 out,
                 AudioQuality.STUDIO,
+                video_flags=MediaStream.IGNORE,
                 additional_ffmpeg_parameters=f"-ss {played} -to {duration}",
             )
         )
@@ -247,7 +248,7 @@ class Call(PyTgCalls):
                 VideoQuality.SD_360p,
             )
         else:
-            stream = MediaStream(link, AudioQuality.STUDIO)
+            stream = MediaStream(link, AudioQuality.STUDIO, video_flags=MediaStream.IGNORE)
         await assistant.change_stream(
             chat_id,
             stream,
@@ -266,6 +267,7 @@ class Call(PyTgCalls):
             else MediaStream(
                 file_path,
                 AudioQuality.STUDIO,
+                video_flags=MediaStream.IGNORE,
                 additional_ffmpeg_parameters=f"-ss {to_seek} -to {duration}",
             )
         )
@@ -306,7 +308,7 @@ class Call(PyTgCalls):
                     VideoQuality.SD_360p,
                 )
                 if video
-                else MediaStream(link, AudioQuality.STUDIO)
+                else MediaStream(link, AudioQuality.STUDIO, video_flags=MediaStream.IGNORE)
             )
         try:
             await assistant.join_group_call(
@@ -383,6 +385,7 @@ class Call(PyTgCalls):
                 else:
                     stream = MediaStream(
                         link,
+                        video_flags=MediaStream.IGNORE,
                         AudioQuality.STUDIO,
                     )
                 try:
@@ -429,7 +432,8 @@ class Call(PyTgCalls):
                 else:
                     stream = MediaStream(
                         file_path,
-                        audio_parameters=HighQualityAudio(),
+                        AudioQuality.STUDIO,
+                        video_flags=MediaStream.IGNORE,
                     )
                 try:
                     await client.change_stream(chat_id, stream)
@@ -462,7 +466,7 @@ class Call(PyTgCalls):
                         VideoQuality.SD_360p,
                     )
                     if str(streamtype) == "video"
-                    else MediaStream(videoid, AudioQuality.STUDIO)
+                    else MediaStream(videoid, AudioQuality.STUDIO, video_flags=MediaStream.IGNORE)
                 )
                 try:
                     await client.change_stream(chat_id, stream)
@@ -490,6 +494,7 @@ class Call(PyTgCalls):
                 else:
                     stream = MediaStream(
                         queued,
+                        video_flags=MediaStream.IGNORE,
                         AudioQuality.STUDIO,
                     )
                 try:
