@@ -115,8 +115,7 @@ class Call:
                 image,
                 audio_path=link,
                 AudioQuality.HIGH,
-                VideoQuality.HD_720p,
-            )
+                VideoQuality.HD_720p)
         else:
             stream = MediaStream(link, AudioQuality.HIGH)
 
