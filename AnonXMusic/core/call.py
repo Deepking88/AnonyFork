@@ -45,7 +45,7 @@ from AnonXMusic.utils.database import (
 from AnonXMusic.utils.exceptions import AssistantErr
 from AnonXMusic.utils.inline.play import stream_markup, telegram_markup
 from AnonXMusic.utils.stream.autoclear import auto_clean
-from AnonXMusic.utils.thumbnails import gen_thumb
+from AnonXMusic.utils.thumbnails import get_thumb
 
 autoend = {}
 counter = {}
