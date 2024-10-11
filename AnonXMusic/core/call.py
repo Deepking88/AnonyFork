@@ -296,7 +296,7 @@ class Call(PyTgCalls):
             stream = MediaStream(
                 link,
                 AudioQuality.STUDIO,
-                VideoQuality.SD_360p,,
+                VideoQuality.SD_360p,
             )
         else:
             stream = (
@@ -377,13 +377,13 @@ class Call(PyTgCalls):
                 if video:
                     stream = MediaStream(
                         link,
-                        audio_parameters=HighQualityAudio(),
-                        video_parameters=MediumQualityVideo(),
+                        AudioQuality.STUDIO,
+                        VideoQuality.SD_360p,
                     )
                 else:
                     stream = MediaStream(
                         link,
-                        audio_parameters=HighQualityAudio(),
+                        AudioQuality.STUDIO,
                     )
                 try:
                     await client.change_stream(chat_id, stream)
@@ -423,8 +423,8 @@ class Call(PyTgCalls):
                 if video:
                     stream = MediaStream(
                         file_path,
-                        audio_parameters=HighQualityAudio(),
-                        video_parameters=MediumQualityVideo(),
+                        AudioQuality.STUDIO,
+                        VideoQuality.SD_360p,
                     )
                 else:
                     stream = MediaStream(
@@ -458,11 +458,11 @@ class Call(PyTgCalls):
                 stream = (
                     MediaStream(
                         videoid,
-                        audio_parameters=HighQualityAudio(),
-                        video_parameters=MediumQualityVideo(),
+                        AudioQuality.STUDIO,
+                        VideoQuality.SD_360p,,
                     )
                     if str(streamtype) == "video"
-                    else MediaStream(videoid, audio_parameters=HighQualityAudio())
+                    else MediaStream(videoid, AudioQuality.STUDIO)
                 )
                 try:
                     await client.change_stream(chat_id, stream)
@@ -484,13 +484,13 @@ class Call(PyTgCalls):
                 if video:
                     stream = MediaStream(
                         queued,
-                        audio_parameters=HighQualityAudio(),
-                        video_parameters=MediumQualityVideo(),
+                        AudioQuality.STUDIO,
+                        VideoQuality.SD_360p,,
                     )
                 else:
                     stream = MediaStream(
                         queued,
-                        audio_parameters=HighQualityAudio(),
+                        AudioQuality.STUDIO,
                     )
                 try:
                     await client.change_stream(chat_id, stream)
