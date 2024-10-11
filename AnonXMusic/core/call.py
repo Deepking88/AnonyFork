@@ -385,8 +385,8 @@ class Call(PyTgCalls):
                 else:
                     stream = MediaStream(
                         link,
-                        video_flags=MediaStream.IGNORE,
                         AudioQuality.STUDIO,
+                        video_flags=MediaStream.IGNORE,
                     )
                 try:
                     await client.change_stream(chat_id, stream)
