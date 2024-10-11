@@ -192,14 +192,14 @@ class Call(PyTgCalls):
         stream = (
             MediaStream(
                 out,
-                audio_parameters=HighQualityAudio(),
-                video_parameters=MediumQualityVideo(),
+                AudioQuality.STUDIO,
+                VideoQuality.SD_360p,
                 additional_ffmpeg_parameters=f"-ss {played} -to {duration}",
             )
             if playing[0]["streamtype"] == "video"
             else MediaStream(
                 out,
-                audio_parameters=HighQualityAudio(),
+                AudioQuality.STUDIO,
                 additional_ffmpeg_parameters=f"-ss {played} -to {duration}",
             )
         )
@@ -243,11 +243,11 @@ class Call(PyTgCalls):
         if video:
             stream = MediaStream(
                 link,
-                audio_parameters=HighQualityAudio(),
-                video_parameters=MediumQualityVideo(),
+                AudioQuality.STUDIO,
+                VideoQuality.SD_360p,
             )
         else:
-            stream = MediaStream(link, audio_parameters=HighQualityAudio())
+            stream = MediaStream(link, AudioQuality.STUDIO)
         await assistant.change_stream(
             chat_id,
             stream,
@@ -258,14 +258,14 @@ class Call(PyTgCalls):
         stream = (
             MediaStream(
                 file_path,
-                audio_parameters=HighQualityAudio(),
-                video_parameters=MediumQualityVideo(),
+                AudioQuality.STUDIO,
+                VideoQuality.SD_360p,
                 additional_ffmpeg_parameters=f"-ss {to_seek} -to {duration}",
             )
             if mode == "video"
             else MediaStream(
                 file_path,
-                audio_parameters=HighQualityAudio(),
+                AudioQuality.STUDIO,
                 additional_ffmpeg_parameters=f"-ss {to_seek} -to {duration}",
             )
         )
@@ -295,18 +295,18 @@ class Call(PyTgCalls):
         if video:
             stream = MediaStream(
                 link,
-                audio_parameters=HighQualityAudio(),
-                video_parameters=MediumQualityVideo(),
+                AudioQuality.STUDIO,
+                VideoQuality.SD_360p,,
             )
         else:
             stream = (
                 MediaStream(
                     link,
-                    audio_parameters=HighQualityAudio(),
-                    video_parameters=MediumQualityVideo(),
+                    AudioQuality.STUDIO,
+                    VideoQuality.SD_360p,,
                 )
                 if video
-                else MediaStream(link, audio_parameters=HighQualityAudio())
+                else MediaStream(link, AudioQuality.STUDIO)
             )
         try:
             await assistant.join_group_call(
