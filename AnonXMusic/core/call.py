@@ -555,7 +555,7 @@ class Call(PyTgCalls):
 
    
 
-      async def ping(self):
+       async def ping(self):
         pings = []
         for call in self.calls:
             pings.append(call.ping)
@@ -565,12 +565,12 @@ class Call(PyTgCalls):
             LOGGER(__name__).error("No active clients for ping calculation.")
             return "No active clients"
 
-    async def start(self):
+      async def start(self):
         """Starts all PyTgCalls instances for the existing userbot clients."""
         LOGGER(__name__).info(f"Starting PyTgCall Clients")
         await asyncio.gather(*[c.start() for c in self.calls])
 
-    async def decorators(self):
+      async def decorators(self):
         for call in self.calls:
 
             @call.on_update(filters.chat_update(ChatUpdate.Status.LEFT_CALL))
